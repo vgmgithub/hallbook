@@ -8,7 +8,7 @@ import SearchHall from './SearchHall';
 import loaderGif from './Hourglass.gif'; // Import your loader GIF
 
 const Home = () => {
-
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
     const loader = <img src={loaderGif} alt="Loading..." style={{ width: "20px"}}/>;
     const { user } = useSession();
  
@@ -17,7 +17,7 @@ const Home = () => {
   useEffect(() => {
     async function fetchCounts() {
       try {
-        const response = await fetch('http://localhost:5000/counts'); // Assuming your API endpoint is at '/api/counts'
+        const response = await fetch(`${BASE_URL}:5000/counts`); // Assuming your API endpoint is at '/api/counts'
         if (response.ok) {
           const data = await response.json();
           setCounts(data);
@@ -32,7 +32,7 @@ const Home = () => {
     setInterval(() => {
         fetchCounts();
       }, 1000);
-  }, []);
+  }, [BASE_URL]);
     
     return (
         <div >

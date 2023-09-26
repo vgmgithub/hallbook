@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useSession } from './SessionContext';
 const NotAuth = () => {
-    const { user,logout } = useSession();
+    const { logout } = useSession();
     const navigate = useNavigate();
     const handleLogout = () => {
     logout();

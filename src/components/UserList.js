@@ -9,7 +9,7 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import DataTable from './DataTable';
 
 const UserList = () => {
-
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const { user } = useSession();
 
 
@@ -27,7 +27,7 @@ const UserList = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-      fetch('http://localhost:5000/api/items')
+      fetch(`${BASE_URL}:5000/api/items`)
         .then((response) => response.json())
         .then((items) => {
           setData(items);
@@ -37,7 +37,7 @@ const UserList = () => {
         });
       // Initialize DataTable
        
-    }, []);
+    }, [BASE_URL]);
   return (
     <div>
       

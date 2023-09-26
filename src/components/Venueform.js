@@ -13,6 +13,7 @@ import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
  
 const Venueform = () => {
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
     const { user } = useSession();
 
     const [formData, setFormData] = useState({
@@ -84,7 +85,7 @@ const Venueform = () => {
 
         async function someFunction() {
             try {
-                const response = await axios.post('http://localhost:5000/venue', formData, {
+                const response = await axios.post(`${BASE_URL}:5000/venue`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

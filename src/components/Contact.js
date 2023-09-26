@@ -11,10 +11,11 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 
 const Contact = () => {
-const initialStateContact = {
-    name: '',
-    email: '',
-    message: '',
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const initialStateContact = {
+      name: '',
+      email: '',
+      message: '',
   }
   const { user } = useSession();
   const [formData, setFormData] = useState(initialStateContact);
@@ -37,7 +38,7 @@ const initialStateContact = {
 
     async function someFunction() {
       try {
-          const response = await axios.post('http://localhost:5000/contact', formData);
+          const response = await axios.post(`${BASE_URL}:5000/contact`, formData);
           if (response.status === 200) {
               setFormData(initialStateContact);
               Swal.fire({

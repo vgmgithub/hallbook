@@ -10,7 +10,7 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import DataTableVenue from './DataTableVenue';
 
 const VenueList = () => {
-
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const { user } = useSession();
 
 
@@ -27,7 +27,7 @@ const VenueList = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-      fetch('http://localhost:5000/api/venue')
+      fetch(`${BASE_URL}:5000/api/venue`)
         .then((response) => response.json())
         .then((items) => {
           setData(items);
@@ -37,7 +37,7 @@ const VenueList = () => {
         });
       // Initialize DataTable
        
-    }, []);
+    }, [BASE_URL]);
   return (
     <div>
       

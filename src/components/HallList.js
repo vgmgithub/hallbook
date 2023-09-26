@@ -1,4 +1,4 @@
-import { faSnowflake, faCar, faSmoking, faUserFriends, faLocationPin, faRupeeSign, faIndianRupeeSign, faPlug, faVideoCamera, faCutlery } from '@fortawesome/free-solid-svg-icons';
+import { faSnowflake, faCar, faSmoking, faUserFriends, faLocationPin, faIndianRupeeSign, faPlug, faVideoCamera, faCutlery } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
@@ -8,18 +8,14 @@ import 'react-tooltip/dist/react-tooltip.css'
 
 const HallList = (props) => {
 
-    
-
-    
-    
-    
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
     const [data, setData] = useState([]);
     const [arraydate, setDate] = useState([]);
     const [matchingNames, setMatchingNames] = useState([]); // State to store matching names
    
     // console.log(data);
     useEffect(() => {
-        fetch('http://localhost:5000/api/venue')
+        fetch(`${BASE_URL}:5000/api/venue`)
             .then((response) => response.json())
             .then((items) => {
                 setData(items);
@@ -32,7 +28,7 @@ const HallList = (props) => {
     }, []);
 
     const getImageUrl = (imageName) => {
-        return `http://localhost:5000/api/getImage/${imageName}`;
+        return `${BASE_URL}:5000/api/getImage/${imageName}`;
     };
  
     const lowerInputText = props.value.toLowerCase();
@@ -46,7 +42,7 @@ const HallList = (props) => {
     
 
     function getbookingdates(id) {
-        fetch('http://localhost:5000/bookingdates/' + id)
+        fetch(`${BASE_URL}:5000/bookingdates/` + id)
             
             .then((response) => response.json())
             .then((items) => {

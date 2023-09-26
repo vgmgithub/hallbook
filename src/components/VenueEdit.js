@@ -8,13 +8,14 @@ import { useSession } from './SessionContext';
 import NotAuth from './NotAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate, useParams, useHistory } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
  
 const VenueEdit = () => {
-    const { user, logout } = useSession();
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const { user } = useSession();
 
     const { id } = useParams(); // Access the "id" parameter from the URL
-    // const history = useHistory();
+
 
 
     
@@ -59,7 +60,7 @@ const VenueEdit = () => {
     const fetchDataById = async (id) => {
         try {
           // Replace with your API or data fetching logic
-          const response = await fetch(`http://localhost:5000/api/venue/${id}`);
+          const response = await fetch(`${BASE_URL}:5000/api/venue/${id}`);
           if (response.ok) {
               const data = await response.json();
                 data.startDate=new Date(data.startDate)
@@ -124,7 +125,7 @@ const VenueEdit = () => {
         async function someFunction() {
      
             try {
-                const response = await fetch(`http://localhost:5000/api/venue/${id}`, {
+                const response = await fetch(`${BASE_URL}:5000/api/venue/${id}`, {
                   method: 'PUT', // Use the appropriate HTTP method for updating data
                   headers: {
                     'Content-Type': 'application/json',

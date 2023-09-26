@@ -7,37 +7,22 @@ import { faEye, faUser } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2'
 import axios from 'axios';
 import Loader from './Loader';
+
 // import { Link } from 'react-router-dom';
 // import Home from './Home';
-
+ 
 function LoginForm() {
   const ADMIN_UNAME = process.env.REACT_APP_ADMIN_USERNAME;
-  const ADMIN_UPASS = process.env.REACT_APP_ADMIN_PASSWORD;
-  
-  
+  const ADMIN_UPASS = process.env.REACT_APP_ADMIN_PASSWORD;  
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+
   // console.log(process.env.REACT_APP_ADMIN_USERNAME);
   const { login } = useSession();
   const initialFormState = {
     username: '',
     password: '',
   };
-
-  // const initialResponseState = {
-  //   // id: '',
-  //   // name: '',
-  //   // email:'',
-  //   // mobileNumber: '',
-  //   // address: '', // This field will store the selected address
-  //   // coordinates: {
-  //   //   lat: '',
-  //   //   lng: '',
-  //   // },
-  //   // city: '',
-  //   // area: '',
-  //   // username: '',
-  //   // password: '',
-    
-  // }
+ 
   
   const [formData, setFormData] = useState(initialFormState);
   const [responseData, setResponseData] = useState('');
@@ -62,7 +47,7 @@ function LoginForm() {
       }
     } else {
         try {
-          const response = await axios.post('http://localhost:5000/api/authenticate', formData);
+          const response = await axios.post(`${BASE_URL}:5000/api/authenticate`, formData);
           if (response.status === 200) {
             
             
@@ -76,6 +61,7 @@ function LoginForm() {
             // Add logic to handle successful registration (e.g., redirect to a login page)
           }
         } catch (error) {
+        
           console.error(error);
           console.log('An unexpected error occurred.');
           setIsLoggedIn(false);

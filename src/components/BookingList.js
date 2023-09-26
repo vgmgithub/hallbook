@@ -8,9 +8,9 @@ import { useSession } from './SessionContext';
 import NotAuth from './NotAuth';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import DataTableBooking from './DataTableBooking';
- 
-const BookingList = () => {
 
+const BookingList = () => {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const { user } = useSession();
 
 
@@ -34,7 +34,7 @@ const BookingList = () => {
   const fetchDataById = async () => {
     try {
       // Replace with your API or data fetching logic
-      const response = await fetch(`http://localhost:5000/booking/`);
+      const response = await fetch(`${BASE_URL}:5000/booking/`);
       if (response.ok) {
         const data = await response.json();
         data.startDate = new Date(data.startDate)

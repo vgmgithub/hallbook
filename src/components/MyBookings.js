@@ -10,7 +10,7 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import DataTableBooking from './DataTableBooking';
  
 const MyBookings = () => {
-
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const { user } = useSession();
   const { id } = useParams();
 
@@ -36,7 +36,7 @@ const MyBookings = () => {
   const fetchDataById = async (id) => {
     try {
       // Replace with your API or data fetching logic
-      const response = await fetch(`http://localhost:5000/my-booking/${id}`);
+      const response = await fetch(`${BASE_URL}:5000/my-booking/${id}`);
       if (response.ok) {
         const data = await response.json();
         data.startDate = new Date(data.startDate)

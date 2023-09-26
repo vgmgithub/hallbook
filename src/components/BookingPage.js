@@ -7,7 +7,7 @@ import { useBookSession, useSession } from './SessionContext';
 import NotAuth from './NotAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleArrowLeft, faIndianRupee } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate, useParams, useHistory, Link } from 'react-router-dom';
+import { useNavigate, useParams  } from 'react-router-dom';
 import ImageSlider from './ImageSlider';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -16,6 +16,7 @@ import Col from 'react-bootstrap/Col';
 
 
 const BookingPage = () => {
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
     const { user } = useSession();
     const { bookingsession } = useBookSession();
 
@@ -77,7 +78,7 @@ const BookingPage = () => {
     const fetchDataById = async (id) => {
         try {
           // Replace with your API or data fetching logic
-          const response = await fetch(`http://localhost:5000/api/venue/${id}`);
+          const response = await fetch(`${BASE_URL}:5000/api/venue/${id}`);
           if (response.ok) {
               const data = await response.json();
                 data.startDate=new Date(data.startDate)
@@ -133,7 +134,7 @@ const BookingPage = () => {
                   
                 async function someFunction() {
                     try {
-                        const response = await axios.post('http://localhost:5000/booking', BookingData);
+                        const response = await axios.post(`${BASE_URL}:5000/booking`, BookingData);
                         console.log('retrun res-'+response)
                         if (response.status === 201) {
                             Swal.fire({

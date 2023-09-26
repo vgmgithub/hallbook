@@ -4,7 +4,7 @@ import { useTable, useSortBy, useGlobalFilter, usePagination } from 'react-table
 import Swal from 'sweetalert2'
 
 function DataTableBooking({ data }) {
-
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
     // Define columns configuration
     const formatDate = (dateString) => {
       // Parse the date string into a Date object
@@ -24,7 +24,7 @@ function DataTableBooking({ data }) {
     console.log('Delete', data.original._id);
     try {
       // Send a DELETE request to the server to delete the venue by ID
-      const response = await fetch(`http://localhost:5000/api/venues/${venueId}`, {
+      const response = await fetch(`${BASE_URL}:5000/api/venues/${venueId}`, {
         method: 'DELETE',
       });
   

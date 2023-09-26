@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2'
 function Registerform() {
-    
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
     const initialFormState= {
         name: '',
         email:'',
@@ -56,7 +56,7 @@ function Registerform() {
         // console.log('Form data:', formData);
         async function someFunction() {
             try {
-                const response = await axios.post('http://localhost:5000/insertregister', formData);
+                const response = await axios.post(`${BASE_URL}:5000/insertregister`, formData);
                 if (response.status === 200) {
                     setFormData(initialFormState);
                     Swal.fire({
@@ -170,7 +170,7 @@ function Registerform() {
                 <input type="password" className="form-control" name="repassword" id="repassword" value={formData.repassword} onChange={handleRetypePasswordChange} required/>
                 
                             <div>
-                            {(formData.repassword=='' || formData.password=='')?(<></>):((formData.password==formData.repassword) ? (
+                            {(formData.repassword==='' || formData.password==='')?(<></>):((formData.password===formData.repassword) ? (
         <p style={{color:"green"}}>Password Matched!</p>
       ) : (
         <p style={{color:"red"}}>Password Not Matched!</p>
